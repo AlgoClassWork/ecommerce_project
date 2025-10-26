@@ -1,0 +1,14 @@
+|<a href="{% url 'product_list' %}"> Все </a>|
+{% for category in categories %}
+   |<a href="{% url 'product_by_category' category.slug %}"> {{category.name}} </a>|
+{% endfor %}
+<br>
+-------------------------------------------
+<br>
+{% for product in products %}
+    | Название: {{ product.name }} |
+    | Категория: {{ product.category }} |
+    | Цена: {{ product.price }} |
+    | Остаток: {{ product.stock }} |
+    <br>
+{% endfor %}
