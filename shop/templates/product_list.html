@@ -8,6 +8,9 @@
 {% for product in products %}
     | Название: {{ product.name }} |
     | Категория: {{ product.category }} |
+    {% if product.image %}
+       <img src="{{ product.image.url }}" >
+    {% endif %}
     | Цена: {{ product.price }} |
     | Остаток: {{ product.stock }} |
     <br>
