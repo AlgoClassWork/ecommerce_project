@@ -1,0 +1,100 @@
+/* Общие стили */
+body {
+    font-family: "Segoe UI", sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    color: #333;
+}
+
+/* Навигация */
+.navbar {
+    background-color: #fff;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-link {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #007bff;
+}
+
+.nav-link.all {
+    font-weight: 600;
+    color: #007bff;
+}
+
+/* Сетка товаров */
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 40px;
+}
+
+/* Карточка товара */
+.product-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+/* Изображение товара */
+.product-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.no-image {
+    width: 100%;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ececec;
+    color: #777;
+    font-size: 14px;
+}
+
+/* Текстовая часть */
+.product-info {
+    padding: 15px;
+}
+
+.product-name {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+    color: #222;
+}
+
+.product-category {
+    margin: 0 0 8px 0;
+    color: #888;
+    font-size: 14px;
+}
+
+.product-price {
+    color: #e63946;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.product-stock {
+    color: #333;
+    font-size: 14px;
+}

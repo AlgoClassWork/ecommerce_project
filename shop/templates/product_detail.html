@@ -1,0 +1,28 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'product_detail.css' %}">
+
+<div class="product-detail">
+    <div class="product-image-block">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+        {% else %}
+            <div class="no-image">Нет изображения</div>
+        {% endif %}
+    </div>
+
+    <div class="product-info-block">
+        <h1 class="product-name">{{ product.name }}</h1>
+        <p class="product-category">Категория: <span>{{ product.category }}</span></p>
+        <p class="product-description">{{ product.description }}</p>
+
+        <p class="product-price">Цена: <strong>{{ product.price }} ₽</strong></p>
+        <p class="product-stock">В наличии: {{ product.stock }}</p>
+
+        <p class="product-date">Добавлен: {{ product.created_at|date:"d.m.Y" }}</p>
+
+        <div class="product-actions">
+            <button class="add-to-cart-btn">Добавить в корзину 🛒</button>
+            <a href="{% url 'product_list' %}" class="back-link">← Вернуться к товарам</a>
+        </div>
+    </div>
+</div>
