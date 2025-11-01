@@ -1,17 +1,28 @@
-|<a href="{% url 'product_list' %}"> Все </a>|
-{% for category in categories %}
-   |<a href="{% url 'product_by_category' category.slug %}"> {{category.name}} </a>|
-{% endfor %}
-<br>
--------------------------------------------
-<br>
-{% for product in products %}
-    | Название: {{ product.name }} |
-    | Категория: {{ product.category }} |
-    {% if product.image %}
-       <img src="{{ product.image.url }}" >
-    {% endif %}
-    | Цена: {{ product.price }} |
-    | Остаток: {{ product.stock }} |
-    <br>
-{% endfor %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'product_list.css' %}">
+
+<div class="navbar">
+    <a href="{% url 'product_list' %}" class="nav-link all">Все товары</a>
+    {% for category in categories %}
+        <a href="{% url 'product_by_category' category.slug %}" class="nav-link">{{ category.name }}</a>
+    {% endfor %}
+</div>
+
+<main class="product-container">
+    {% for product in products %}
+        <div class="product-card">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+            {% else %}
+                <div class="no-image">Нет изображения</div>
+            {% endif %}
+            <div class="product-info">
+                <h3 class="product-name">{{ product.name }}</h3>
+                <p class="product-category">Категория: {{ product.category }}</p>
+                <p class="product-price">Цена: <strong>{{ product.price }} ₽</strong></p>
+                <p class="product-stock">Остаток: {{ product.stock }}</p>
+                <a href="{% url 'product_detail' product.slug %}"> Подробнее </a>
+            </div>
+        </div>
+    {% endfor %}
+</main>
