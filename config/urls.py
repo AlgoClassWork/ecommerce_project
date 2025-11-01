@@ -26,7 +26,9 @@ urlpatterns = [
     # http://127.0.0.1:8000/
     path('', product_list, name='product_list'),
     # http://127.0.0.1:8000/category/elektronika/
-    path('category/<slug:slug>/', product_list, name='product_by_category')
+    path('category/<slug:slug>/', product_list, name='product_by_category'),
+    # http://127.0.0.1:8000/product/shampun/
+    path('product/<slug:slug>/', product_detail, name='product_detail'),
 ]
 
 if settings.DEBUG:
