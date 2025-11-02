@@ -24,5 +24,20 @@
             <button class="add-to-cart-btn">Добавить в корзину 🛒</button>
             <a href="{% url 'product_list' %}" class="back-link">← Вернуться к товарам</a>
         </div>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button> Отправить отзыв </button>
+        </form>
+
+        {% for review in reviews %}
+            <p> {{ review.text }} </p>
+                {{ review.rating }}
+        {% endfor %}
+
     </div>
+
+    
+
 </div>
