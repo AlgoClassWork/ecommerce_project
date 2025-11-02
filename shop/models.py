@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 class Category(models.Model):
@@ -21,3 +22,14 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class Review(models.Model):
+    product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE, verbose_name='Товар')
+    text = models.TextField(verbose_name='Отзыв')
+    rating = models.IntegerField( 
+        validators=(MinValueValidator(1), MaxValueValidator(5)),
+        verbose_name='Оценка')
+
+    def __str__(self):
+        return f'Отзыв на {self.product.name}'

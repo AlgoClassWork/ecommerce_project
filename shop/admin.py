@@ -15,3 +15,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ('category', 'available')
     search_fields = ('name', )
     prepopulated_fields = {'slug': ('name',) }
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('product', 'text', 'rating')
