@@ -5,7 +5,7 @@ body {
     color: #333;
 }
 
-/* Главный контейнер */
+/* ==== Карточка товара ==== */
 .product-detail {
     display: flex;
     max-width: 1000px;
@@ -16,7 +16,7 @@ body {
     overflow: hidden;
 }
 
-/* Левая часть — картинка (50%) */
+/* Левая часть — изображение */
 .product-image-block {
     flex: 0 0 50%;
     display: flex;
@@ -32,7 +32,6 @@ body {
     max-height: 500px;
     object-fit: cover;
     border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .no-image {
@@ -46,7 +45,7 @@ body {
     border-radius: 8px;
 }
 
-/* Правая часть — информация (50%) */
+/* Правая часть — описание */
 .product-info-block {
     flex: 0 0 50%;
     padding: 40px;
@@ -79,24 +78,14 @@ body {
     margin-bottom: 10px;
 }
 
-.product-stock {
-    font-size: 15px;
-    color: #333;
+.product-stock,
+.product-date {
+    font-size: 14px;
+    color: #666;
     margin-bottom: 10px;
 }
 
-.out-of-stock {
-    color: #b30000;
-    font-weight: 600;
-}
-
-.product-date {
-    font-size: 13px;
-    color: #aaa;
-    margin-bottom: 25px;
-}
-
-/* Кнопки */
+/* ==== Кнопки ==== */
 .product-actions {
     display: flex;
     flex-direction: column;
@@ -124,14 +113,153 @@ body {
     text-decoration: none;
     color: #555;
     font-size: 15px;
-    transition: color 0.3s;
 }
 
 .back-link:hover {
     color: #007bff;
 }
 
-/* Адаптивность для телефонов */
+/* ==== Блок отзывов ==== */
+.reviews-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.reviews-section {
+    background: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.reviews-section h2 {
+    font-size: 22px;
+    color: #222;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* ==== Форма отзыва ==== */
+.review-form {
+    background: #f9fafc;
+    border: 1px solid #e2e6ea;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.review-form .form-group {
+    margin-bottom: 15px;
+}
+
+.review-form label {
+    display: block;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 8px;
+}
+
+.review-form textarea {
+    width: 100%;
+    min-height: 80px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+.review-btn {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.review-btn:hover {
+    background: #0056b3;
+}
+
+/* ==== Звёзды рейтинга ==== */
+.stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    gap: 4px;
+}
+
+.stars input {
+    display: none;
+}
+
+.stars label {
+    font-size: 26px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.25s;
+}
+
+.stars input:checked ~ label,
+.stars label:hover,
+.stars label:hover ~ label {
+    color: #FFD700;
+}
+
+/* ==== Список отзывов ==== */
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.review-card {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 15px 20px;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.review-rating .star {
+    color: #ddd;
+    font-size: 20px;
+}
+
+.review-rating .star.filled {
+    color: #FFD700;
+}
+
+.review-date {
+    font-size: 13px;
+    color: #999;
+}
+
+.review-text {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.no-reviews {
+    color: #777;
+    font-style: italic;
+    text-align: center;
+}
+
+/* ==== Адаптивность ==== */
 @media (max-width: 768px) {
     .product-detail {
         flex-direction: column;
@@ -139,7 +267,6 @@ body {
 
     .product-image-block,
     .product-info-block {
-        flex: 1 1 100%;
         padding: 25px;
     }
 
@@ -147,12 +274,14 @@ body {
         max-height: 300px;
     }
 
-    .product-actions {
-        align-items: center;
-    }
-
-    .add-to-cart-btn, .back-link {
+    .add-to-cart-btn,
+    .back-link {
         width: 100%;
         text-align: center;
+    }
+
+    .reviews-container {
+        padding: 0 10px;
+        margin: 30px auto;
     }
 }
