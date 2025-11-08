@@ -17,27 +17,60 @@
 
         <p class="product-price">Цена: <strong>{{ product.price }} ₽</strong></p>
         <p class="product-stock">В наличии: {{ product.stock }}</p>
-
         <p class="product-date">Добавлен: {{ product.created_at|date:"d.m.Y" }}</p>
 
         <div class="product-actions">
             <button class="add-to-cart-btn">Добавить в корзину 🛒</button>
             <a href="{% url 'product_list' %}" class="back-link">← Вернуться к товарам</a>
         </div>
+    </div>
+</div>
 
-        <form method="post">
+<!-- Вынесем отзывы ниже, за пределы карточки -->
+<div class="reviews-container">
+    <div class="reviews-section">
+        <h2>Отзывы покупателей</h2>
+
+        <form method="post" class="review-form">
             {% csrf_token %}
-            {{ form }}
-            <button> Отправить отзыв </button>
+            <div class="form-group">
+                <label for="id_rating">Ваша оценка:</label>
+                <div class="stars">
+                    {% for i in "54321" %}
+                        <input type="radio" name="rating" id="star{{ i }}" value="{{ i }}">
+                        <label for="star{{ i }}">★</label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="id_text">Комментарий:</label>
+                {{ form.text }}
+            </div>
+
+            <button type="submit" class="review-btn">Отправить отзыв</button>
         </form>
 
-        {% for review in reviews %}
-            <p> {{ review.text }} </p>
-                {{ review.rating }}
-        {% endfor %}
-
+        <div class="reviews-list">
+            {% for review in reviews %}
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-rating">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= review.rating %}
+                                    <span class="star filled">★</span>
+                                {% else %}
+                                    <span class="star">★</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <span class="review-date">{{ review.created_at|date:"d.m.Y" }}</span>
+                    </div>
+                    <p class="review-text">{{ review.text }}</p>
+                </div>
+            {% empty %}
+                <p class="no-reviews">Пока нет отзывов — будьте первым!</p>
+            {% endfor %}
+        </div>
     </div>
-
-    
-
 </div>
