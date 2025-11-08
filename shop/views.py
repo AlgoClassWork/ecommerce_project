@@ -29,3 +29,16 @@ def product_detail(request, slug):
 
     context = {'product':product, 'reviews':reviews, 'form':form}
     return render(request, 'product_detail.html', context)
+
+
+def cart_detail(request):
+    cart = request.session.get('cart', {})
+    context = {'cart': cart}
+    return render(request, 'cart_detail.html', context)
+
+def cart_add(request, slug):
+    cart = request.session.get('cart', {})
+    quantity = cart.get( slug, 0 ) + 1
+    cart[slug] = quantity
+    request.session['cart'] = cart
+    return redirect( 'product_list' )

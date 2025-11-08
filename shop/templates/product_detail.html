@@ -20,7 +20,7 @@
         <p class="product-date">Добавлен: {{ product.created_at|date:"d.m.Y" }}</p>
 
         <div class="product-actions">
-            <button class="add-to-cart-btn">Добавить в корзину 🛒</button>
+            <a href="{% url 'cart_add' product.slug %}" class="add-to-cart-btn">Добавить в корзину 🛒</a>
             <a href="{% url 'product_list' %}" class="back-link">← Вернуться к товарам</a>
         </div>
     </div>

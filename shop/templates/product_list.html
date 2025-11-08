@@ -3,9 +3,12 @@
 
 <div class="navbar">
     <a href="{% url 'product_list' %}" class="nav-link all">Все товары</a>
+
     {% for category in categories %}
         <a href="{% url 'product_by_category' category.slug %}" class="nav-link">{{ category.name }}</a>
     {% endfor %}
+    
+    <a href="{% url 'cart_detail' %}" class="nav-link all">Корзина</a>
 </div>
 
 <main class="product-container">
