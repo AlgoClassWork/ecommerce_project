@@ -1,3 +1,50 @@
-<h1> Корзина </h1>
-Содержимое корзины:
-{{ cart }}
+{% load static %}
+<link rel="stylesheet" href="{% static 'cart_detail.css' %}">
+
+<div class="cart-container">
+    <h2 class="cart-title">🛒 Ваша корзина</h2>
+
+    {% if cart_products %}
+        <div class="cart-items">
+            {% for product_info in cart_products %}
+                <div class="cart-item">
+                    {% if product_info.product.image %}
+                        <img class="cart-item-image" src="{{ product_info.product.image.url }}" alt="{{ product_info.product.name }}">
+                    {% else %}
+                        <div class="cart-item-image no-image">Нет изображения</div>
+                    {% endif %}
+
+                    <div class="cart-item-info">
+                        <h3 class="cart-item-name">{{ product_info.product.name }}</h3>
+                        <p>Количество: <strong>{{ product_info.quantity }}</strong> шт</p>
+                        <p>Цена за штуку: <strong>{{ product_info.product.price }}</strong> сом</p>
+                        <p>Итого: <strong>{{ product_info.total_price }}</strong> сом</p>
+                    </div>
+
+                    <form method="post" action="" class="cart-item-actions">
+                        {% csrf_token %}
+                        <button type="submit" class="btn remove-btn">Удалить</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="cart-summary">
+            <h3>💰 Общая сумма: <span>{{ total_price }}</span> сом</h3>
+            <div class="cart-buttons">
+                <a href="{% url 'product_list' %}" class="btn secondary-btn">← Продолжить покупки</a>
+                <a href="" class="btn primary-btn">Оформить заказ</a>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <button type="submit" class="btn danger-btn">Очистить корзину</button>
+                </form>
+            </div>
+        </div>
+
+    {% else %}
+        <div class="empty-cart">
+            <p>🛍 Ваша корзина пуста</p>
+            <a href="{% url 'product_list' %}" class="btn primary-btn">Перейти в каталог</a>
+        </div>
+    {% endif %}
+</div>
