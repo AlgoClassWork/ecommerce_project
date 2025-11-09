@@ -53,3 +53,7 @@ def cart_add(request, slug):
     cart[slug] = quantity
     request.session['cart'] = cart
     return redirect( 'product_list' )
+
+def cart_clear(request):
+    request.session['cart'] = {}
+    return redirect( 'cart_detail' )
