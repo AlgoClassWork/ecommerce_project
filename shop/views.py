@@ -33,7 +33,18 @@ def product_detail(request, slug):
 
 def cart_detail(request):
     cart = request.session.get('cart', {})
-    context = {'cart': cart}
+    product_slugs = cart.keys() 
+    products = Product.objects.filter(slug__in=product_slugs)
+    
+    total_price = 0
+    cart_products = []
+    for product in products:
+        quantity = cart[product.slug]
+        total_item = product.price * quantity
+        cart_products.append( {'product':product, 'quantity': quantity, 'total_price': total_item} )
+        total_price += total_item
+
+    context = {'cart_products':cart_products, 'total_price':total_price}
     return render(request, 'cart_detail.html', context)
 
 def cart_add(request, slug):
