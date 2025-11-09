@@ -34,7 +34,7 @@
             <div class="cart-buttons">
                 <a href="{% url 'product_list' %}" class="btn secondary-btn">← Продолжить покупки</a>
                 <a href="" class="btn primary-btn">Оформить заказ</a>
-                <form method="post" action="">
+                <form method="post" action="{% url 'cart_clear' %}">
                     {% csrf_token %}
                     <button type="submit" class="btn danger-btn">Очистить корзину</button>
                 </form>
