@@ -21,7 +21,7 @@
                         <p>Итого: <strong>{{ product_info.total_price }}</strong> сом</p>
                     </div>
 
-                    <form method="post" action="" class="cart-item-actions">
+                    <form method="post" action="{% url 'cart_remove' product_info.product.slug %}" class="cart-item-actions">
                         {% csrf_token %}
                         <button type="submit" class="btn remove-btn">Удалить</button>
                     </form>
