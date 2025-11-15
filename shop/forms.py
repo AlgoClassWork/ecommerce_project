@@ -5,3 +5,8 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ['text', 'rating']
+
+class OrderCreateForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['full_name', 'address']

@@ -19,3 +19,9 @@ class ProductAdmin(admin.ModelAdmin):
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('product', 'text', 'rating')
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'address', 'created_at', 'total_cost', 'paid')
+    list_filter = ('paid', 'created_at')
+    search_fields = ('full_name', )

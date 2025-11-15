@@ -64,3 +64,8 @@ def cart_remove(request, slug):
         del cart[slug]
         request.session['cart'] = cart
     return redirect('cart_detail')
+
+def order_create(request):
+    form = OrderCreateForm()
+    context = {'form':form}
+    return render(request, 'order_create.html', context)

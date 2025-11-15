@@ -33,3 +33,15 @@ class Review(models.Model):
 
     def __str__(self):
         return f'Отзыв на {self.product.name}'
+    
+
+class Order(models.Model):
+    full_name = models.CharField(max_length=100, verbose_name='ФИО')
+    address = models.CharField(max_length=100, verbose_name='Адрес')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Создан')
+    products = models.TextField(verbose_name='Состав заказа')
+    total_cost = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Итоговая стоимость')
+    paid = models.BooleanField(default=False, verbose_name='Оплачен')
+
+    def __str__(self):
+        return f'Заказ #{self.id}'

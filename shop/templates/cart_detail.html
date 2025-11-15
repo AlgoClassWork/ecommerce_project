@@ -33,7 +33,7 @@
             <h3>💰 Общая сумма: <span>{{ total_price }}</span> сом</h3>
             <div class="cart-buttons">
                 <a href="{% url 'product_list' %}" class="btn secondary-btn">← Продолжить покупки</a>
-                <a href="" class="btn primary-btn">Оформить заказ</a>
+                <a href="{% url 'order_create' %}" class="btn primary-btn">Оформить заказ</a>
                 <form method="post" action="{% url 'cart_clear' %}">
                     {% csrf_token %}
                     <button type="submit" class="btn danger-btn">Очистить корзину</button>
